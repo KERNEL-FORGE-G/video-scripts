@@ -96,7 +96,9 @@ complète tourne quand même. **Ne jamais commiter une clé.**
 
 ```bash
 # 1. le texte (seulement si les répliques changent)
-python3 build/make_script.py && python3 build/check_script.py
+python3 build/make_script.py            # écrit build/script_long.py
+python3 build/restaure_brouillons.py    # réécrit work/script/chNN_draft.txt
+python3 build/check_script.py           # relit les brouillons : 775 répliques
 python3 build/script_data.py            # compte les répliques, liste les chapitres
 
 # 2. les voix -> audio/line_NN.mp3 + audio/timings.json   (~2 h, réseau)
@@ -128,10 +130,15 @@ de relancer `gen_audio.py` puis `timeline.py`**.
 
 ```bash
 python3 build/render.py --720p --debut 0 --fin 120 --out work/part_000.mp4
-python3 build/render.py --seconds 20          # amorçage rapide, un seul plan
+python3 build/render.py --seconds 20          # amorçage -> out/video_test.mp4
 python3 build/render.py --stills 4 78 200     # images fixes dans work/still_*.png
 python3 build/render.py --mux work/part_003.mp4   # reposer le son, sans re-rendre
 ```
+
+`--out` n'est lu **que** avec `--debut/--fin` ; `--seconds` écrit son
+`out/video_test.mp4` à lui. `out/` et `work/` sont créés au besoin par le moteur :
+git ne stocke pas les dossiers vides, et la sonde d'espace disque de `render.py`
+échouait sur un clone qui n'avait pas encore `out/`.
 
 Une partie = 120 s d'antenne (`PART=60 bash run.sh` pour 60 s). La partie *n*
 couvre `[n×PART, n×PART+PART[`.

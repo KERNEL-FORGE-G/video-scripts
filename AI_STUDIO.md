@@ -76,13 +76,14 @@ ne refait pas ce qui est déjà validé.
 
 | # | Ce qui manque | Commande | Coût |
 |---|---|---|---|
-| a | plaques de décor | `python3 build/build_decors.py [cle...]` | secondes, **100 % local** |
-| b | poses de sprites | `python3 build/cut_planches.py` | secondes, local |
-| c | voix | `UNIFLOW_COUPE=60 python3 build/gen_audio.py` | ≈ 2 h, réseau, sans clé |
-| d | plan de tournage seul | `python3 build/timeline.py --json` | secondes, **ne touche pas au master** |
-| e | master.wav | `python3 build/timeline.py` | ≈ 30 min, ≈ 2 Go de RAM |
-| f | parties vidéo | `bash run.sh` (ou une triche, voir §4) | 4 h 30 en 1 travailleur |
-| g | livrable | `bash build/coupe15.sh` puis `bash build/qa.sh <fichier>` | minutes |
+| a | brouillons de relecture | `python3 build/restaure_brouillons.py` | secondes — **sans ça, `check_script.py` annonce `0 réplique` en sortant 0** |
+| b | plaques de décor | `python3 build/build_decors.py [cle...]` | secondes, **100 % local** |
+| c | poses de sprites | `python3 build/cut_planches.py` | secondes, local |
+| d | voix | `UNIFLOW_COUPE=60 python3 build/gen_audio.py` | ≈ 2 h, réseau, sans clé |
+| e | plan de tournage seul | `python3 build/timeline.py --json` | secondes, **ne touche pas au master** |
+| f | master.wav | `python3 build/timeline.py` | ≈ 30 min, ≈ 2 Go de RAM |
+| g | parties vidéo | `bash run.sh` (ou une triche, voir §4) | 4 h 30 en 1 travailleur |
+| h | livrable | `bash build/coupe15.sh` puis `bash build/qa.sh <fichier>` | minutes |
 
 **Piège connu, à ne pas répéter** : `timeline.py` sans argument recharge les 775
 MP3 dans des tableaux d'onde d'une heure à 48 kHz — environ 700 Mo chacun. Sur
@@ -90,6 +91,14 @@ une machine à 8 Go de RAM disponible, le processus se fait tuer **sans message*
 et le log reste à zéro octet. Si l'objectif est de modifier le découpage des
 plans et non le son, et que `master.wav` existe déjà : **`--json`**, toujours.
 Le mix ne dépend que des durées ; un master existant reste valide.
+
+**Cet enchaînement a été exécuté sur un clone neuf** (215 Mo, sans `out/` ni
+`work/`) : diagnostic complet, `build_decors.py amphi` après suppression
+volontaire de la plaque (1,7 s, 89 Ko rendus), `cut_planches.py 5` (25 poses),
+`restaure_brouillons.py` → `check_script.py` (775 répliques),
+`render.py --720p --seconds 2` (50 images, 1280×720 à 25 i/s) et
+`--debut 0 --fin 4 --out …` (4,000000 s). Un clone de ce dépôt compile donc sans
+clé, sans réseau et sans données locales.
 
 ## 3. Générer les visuels manquants
 

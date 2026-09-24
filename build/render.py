@@ -939,6 +939,10 @@ def encode(tl, beats, debut, fin, target, audio=None):
     frontière de la partie arrive à l'antenne en coupure franche.
     """
     f0, f1 = int(round(debut * FPS)), int(round(fin * FPS))
+    # `out/` n'existe pas dans un clone neuf (git ne stocke pas les dossiers
+    # vides) et disk_usage lève une exception sur un chemin absent : la
+    # création vient avant la sonde, pas après.
+    target.parent.mkdir(parents=True, exist_ok=True)
     besoin = (fin - debut) * (5.2e6 / 8) + 1.2e9
     libre = shutil.disk_usage(target.parent).free
     if libre < besoin:
