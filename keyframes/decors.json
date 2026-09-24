@@ -1,0 +1,73 @@
+{
+ "wide": {
+  "sol": 930,
+  "tech": "left",
+  "props": []
+ },
+ "_revision": "2026-09-24T14:36:49",
+ "medium": {
+  "sol": 930,
+  "tech": "left",
+  "props": []
+ },
+ "outro": {
+  "sol": 930,
+  "tech": "left",
+  "props": []
+ },
+ "demo": {
+  "sol": 968,
+  "tech": "left",
+  "props": []
+ },
+ "campus": {
+  "sol": 1000,
+  "tech": "left",
+  "props": []
+ },
+ "compare": {
+  "sol": 1010,
+  "tech": "left",
+  "props": []
+ },
+ "audience": {
+  "sol": 1035,
+  "tech": "left",
+  "props": []
+ },
+ "backstage": {
+  "sol": 985,
+  "tech": "left",
+  "props": []
+ },
+ "amphi": {
+  "sol": 1010,
+  "tech": "left",
+  "props": []
+ },
+ "portail": {
+  "sol": 1006,
+  "tech": "left",
+  "props": []
+ },
+ "reseau": {
+  "sol": 940,
+  "tech": "left",
+  "props": []
+ },
+ "sentinelle": {
+  "sol": 1000,
+  "tech": "left",
+  "props": []
+ },
+ "avenir": {
+  "sol": null,
+  "tech": "left",
+  "props": []
+ },
+ "forum": {
+  "sol": 1000,
+  "tech": "left",
+  "props": []
+ }
+}

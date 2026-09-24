@@ -1,0 +1,20 @@
+# Creditees : jamais dans git. Le depot ne livre que .env.example (noms vides).
+.env
+
+# Sorties de fabrication : reproductibles par `bash run.sh`, et hors de prix
+# (une partie de 120 s fait ~27 Mo, l'heure en fait 31).
+out/
+work/
+
+# Le master de l'heure pese 661 Mio — au-dessus de la limite de fichier de
+# GitHub, et `python3 build/timeline.py` le refabrique a partir des MP3 de audio/.
+audio/master.wav
+
+# Iterations supersedees, conservees localement pour reference historique.
+audio15/
+_remplaces/
+
+# Caches et sauvegardes d'editeur.
+__pycache__/
+*.pyc
+*.blend1
